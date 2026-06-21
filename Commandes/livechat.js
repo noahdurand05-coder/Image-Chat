@@ -24,9 +24,10 @@ module.exports = {
 
         
         if(!texte && URL){
-            message.reply(" ✅ LiveChat envoyé !")
-            console.log("Lien : ", URL);
             console.log("Utilisateur : ", user)
+            console.log("Lien : ", URL);
+            message.reply(" ✅ LiveChat envoyé !")
+            
         }
 
         if(texte && !URL){
@@ -36,9 +37,10 @@ module.exports = {
 
 
         if(texte && URL) {
+        console.log("Utilisateur : ", user)
         console.log("Lien : ", URL);
         console.log("Message : ", texte)
-        console.log("Utilisateur : ", user)
+        
         message.reply(" ✅ LiveChat envoyé !")
         }
     }

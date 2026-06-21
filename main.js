@@ -8,6 +8,7 @@ const bot = new Discord.Client({
     ]})
 const loadCommands = require("./Loader/loadCommands.js")
 const config = require("./config.js")
+const LCChannel = require("./config.js")
 
 bot.commands = new Discord.Collection()
 
@@ -24,9 +25,12 @@ bot.on("ready", () =>{
 bot.on("messageCreate", async(message) => {
     if(message.author.bot) return;
     
+    if (message.channel.id !== config.channelID) return;
+    
     const prefix = "!"
 
     if(!message.content.startsWith(prefix)) return;
+
 
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();

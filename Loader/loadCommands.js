@@ -11,7 +11,7 @@ module.exports = async (bot) => {
         
             bot.commands.set(command.name, command)
             console.log(`Commande ${file} chargée avec succès !`);
-            localStorage
+            
     })
 
 }

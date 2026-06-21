@@ -15,12 +15,18 @@ module.exports = {
         }
 
         const attachement = attachments.first();
-        const URL = attachement.url;
-        const texte = message.content.replace("!livechat", "").trim();
+        const URL = {lien : attachement.url};
+        const texte = { message : message.content.replace("!livechat", "").trim()};
+        const user = {
+            pseudo : message.author.username,
+            avatar : message.author.displayAvatarURL()
+        };
+
         
         if(!texte && URL){
             message.reply(" ✅ LiveChat envoyé !")
             console.log("Lien : ", URL);
+            console.log("Utilisateur : ", user)
         }
 
         if(texte && !URL){
@@ -32,6 +38,7 @@ module.exports = {
         if(texte && URL) {
         console.log("Lien : ", URL);
         console.log("Message : ", texte)
+        console.log("Utilisateur : ", user)
         message.reply(" ✅ LiveChat envoyé !")
         }
     }

@@ -1,0 +1,16 @@
+CREATE DATABASE LiveChat;
+GO
+USE LiveChat;
+
+CREATE TABLE [Messages](
+
+id INT NOT NULL IDENTITY (1,1) PRIMARY KEY,
+media VARCHAR(max) NULL,
+texte VARCHAR(max) NULL,
+userProfilePicture VARCHAR(max) NULL,
+username VARCHAR(50) NOT NULL,
+dateCrea DATETIME2 DEFAULT GETDATE()
+
+);
+
+SELECT * FROM [Messages];

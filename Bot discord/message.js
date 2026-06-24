@@ -19,8 +19,8 @@ async function insertDataBase({ media, texte, user }) {
             (@media, @texte, @avatar, @username)
         `);
 
-        console.log("✅ INSERT SUCCESS");
-        console.log("ROWS:", result.rowsAffected);
+        console.log("✅ Ligne insérée avec succès ! ");
+        
 
     } catch (err) {
         console.log("❌ SQL ERROR:", err);

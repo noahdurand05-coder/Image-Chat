@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const { insertDataBase } = require("../message")
 
 module.exports = {
 
@@ -15,32 +16,34 @@ module.exports = {
         }
 
         const attachement = attachments.first();
-        const URL = {lien : attachement.url};
-        const texte = { message : message.content.replace("!livechat", "").trim()};
+        const media =  attachement.url;
+        const texte =  message.content.replace("!livechat", "").trim();
         const user = {
             pseudo : message.author.username,
             avatar : message.author.displayAvatarURL()
         };
 
         
-        if(!texte && URL){
+        if(!texte && media){
             console.log("Utilisateur : ", user)
-            console.log("Lien : ", URL);
+            console.log("Lien : ", media);
+            await insertDataBase({media,texte,user});
             message.reply(" ✅ LiveChat envoyé !")
+            
             
         }
 
-        if(texte && !URL){
+        if(texte && !media){
            return message.reply("❌ Tu dois envoyer une image ou une vidéo !")
         }
 
 
 
-        if(texte && URL) {
+        if(texte && media) {
         console.log("Utilisateur : ", user)
-        console.log("Lien : ", URL);
+        console.log("Lien : ", media);
         console.log("Message : ", texte)
-        
+        await insertDataBase({media,texte,user});
         message.reply(" ✅ LiveChat envoyé !")
         }
     }

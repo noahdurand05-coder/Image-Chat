@@ -1,78 +1,93 @@
 📡 Image Chat
 
-Un système d’overlay temps réel permettant d’afficher des messages envoyés depuis Discord directement sur un écran sous forme de flux visuel éphémère.
-
+Système d’overlay temps réel basé sur Discord permettant d’afficher des messages (texte, image, vidéo) directement sur un écran.
+---
 🎬 Aperçu
 
-Image Chat transforme les messages Discord en overlays dynamiques affichés en temps réel sur un écran.
+Image Chat transforme les messages Discord en overlays visuels affichés en temps réel.
 
-Chaque message peut contenir du texte, une image ou une vidéo et apparaît de manière fluide avant de disparaître automatiquement.
+Chaque message est :
+
+envoyé via Discord
+traité par le système
+affiché en overlay sur écran
+supprimé automatiquement après affichage
+---
 
 ✨ Fonctionnalités
-Envoi de messages via Discord
-Support des images et vidéos
-Affichage du pseudo et de l’avatar utilisateur
-Overlay en temps réel sur écran
-Messages éphémères (affichage unique)
-Système de file d’attente des messages
-Nettoyage automatique des anciennes données
-Affichage fluide et toujours au-dessus des autres fenêtres
+
+📩 Envoi de messages via Discord
+🖼️ Support des images
+🎥 Support des vidéos
+👤 Affichage du pseudo + avatar
+🪟 Overlay en temps réel (always on top)
+⏳ Messages éphémères (affichage unique)
+📦 File d’attente des messages
+🧹 Nettoyage automatique de la base de données
+---
+
 🧱 Architecture
 
-Le système repose sur trois composants principaux :
+Le système est composé de 3 parties :
 
-Un bot Discord qui reçoit les messages
-Une base de données SQL Server pour le stockage temporaire
-Une application Electron qui affiche les overlays
-🖥️ Fonctionnement
+🤖 Bot Discord → récupère les messages
+🗄️ SQL Server → stocke temporairement les données
+🖥️ Electron App → affiche les overlays
+---
 
-Les messages suivent un flux simple :
+🔄 Fonctionnement
 
-Les messages sont envoyés depuis Discord
-Ils sont stockés temporairement dans la base de données
-L’application les récupère automatiquement
-Ils sont affichés une seule fois en overlay
-Ils disparaissent ensuite du flux actif
+Le flux est simple :
+
+Un message est envoyé sur Discord
+Il est stocké dans la base de données
+L’application Electron le récupère
+Il est affiché en overlay
+Il est marqué comme traité
+Il disparaît du flux actif
+---
 
 ⚙️ Gestion des données
+Les messages sont stockés temporairement
+Chaque message est affiché une seule fois
+Les messages déjà affichés sont marqués comme traités
+Un nettoyage automatique supprime les anciens messages
+---
 
-Le système fonctionne avec une logique de traitement des messages :
-
-Stockage temporaire des messages entrants
-Affichage unique de chaque message
-Marquage des messages déjà affichés
-Nettoyage automatique des anciennes données
 🧠 Concept
 
-Image Chat fonctionne comme une file d’attente de messages :
+Image Chat fonctionne comme une file de messages en temps réel :
 
-Les données arrivent depuis Discord
-Elles sont consommées par l’application en temps réel
-Chaque message est affiché puis retiré du flux actif
+entrée (Discord)
+traitement (SQL)
+affichage (Electron)
+suppression du flux actif
+---
+
 🚀 Objectif
 
-Ce projet a été conçu pour explorer :
+Ce projet sert à explorer :
 
-Les systèmes de communication temps réel
-Les overlays interactifs
-L’intégration Discord + application desktop
-La gestion de flux de données live
+les systèmes temps réel
+les overlays desktop
+l’intégration Discord + desktop app
+la gestion de flux de données
+---
 ⚠️ Statut
 
-Projet personnel / démonstration technique.
+Projet personnel / démonstration technique
+Aucune installation publique disponible
+---
 
-Aucune installation publique n’est disponible.
+🔮 Améliorations futures
 
-🔮 Améliorations possibles
-Système temps réel sans polling
-Interface de configuration utilisateur
-Animations avancées des overlays
-Support multi-écran
-Personnalisation complète de l’UI
+système temps réel sans polling
+interface de configuration
+animations d’overlay
+multi-écran
+personnalisation complète
+---
+
 👨‍💻 Auteur
 
 Développé par Noah
-
-📜 Licence
-
-Projet personnel / démonstration technique.

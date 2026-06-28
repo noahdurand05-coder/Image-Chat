@@ -1,77 +1,98 @@
-📡 Image Chat
+# 📡 Image Chat
 
 Système d’overlay temps réel basé sur Discord permettant d’afficher des messages (texte, image, vidéo) directement sur un écran.
 
-🎬 Aperçu
+---
 
-Image Chat transforme les messages Discord en overlays visuels affichés en temps réel.
+# 🎬 Aperçu
 
-Chaque message passe par un flux simple :
+Image Chat transforme les messages Discord en overlays affichés en temps réel.
 
-Envoi via Discord
-Traitement par le système
-Affichage en overlay
-Suppression automatique après affichage
-✨ Fonctionnalités
-📩 Envoi de messages via Discord
-🖼️ Support des images
-🎥 Support des vidéos
-👤 Affichage du pseudo + avatar utilisateur
-🪟 Overlay toujours au-dessus des fenêtres
-⏳ Messages éphémères (une seule apparition)
-📦 Gestion de file d’attente
-🧹 Nettoyage automatique de la base de données
-🧱 Architecture
+Chaque message suit ce flux :
 
-Le système est composé de 3 blocs :
+- Envoi depuis Discord  
+- Traitement par le système  
+- Affichage en overlay  
+- Suppression automatique après affichage  
 
-🤖 Bot Discord
-→ Récupère les messages utilisateurs
+---
 
-🗄️ SQL Server
-→ Stocke temporairement les messages
+# ✨ Fonctionnalités
 
-🖥️ Electron App
-→ Affiche les overlays à l’écran
+- Envoi de messages via Discord  
+- Support images et vidéos  
+- Affichage pseudo + avatar utilisateur  
+- Overlay toujours au-dessus des fenêtres  
+- Messages éphémères (une seule apparition)  
+- File d’attente des messages  
+- Nettoyage automatique de la base de données  
 
-🔄 Fonctionnement
-Un message est envoyé sur Discord
-Il est enregistré dans la base de données
-L’application récupère les messages
-Le message est affiché en overlay
-Il est marqué comme traité
-Il disparaît du flux
-⚙️ Gestion des données
-Stockage temporaire des messages
-Affichage unique de chaque message
-Marquage des messages déjà consommés
-Nettoyage automatique des anciennes données
-🧠 Concept
+---
 
-Le système fonctionne comme une pipeline de données :
+# 🧱 Architecture
 
-Discord → SQL → Electron → Affichage → Suppression
+Le système est composé de trois parties :
 
-🚀 Objectif
+- Bot Discord (réception des messages)  
+- Base de données SQL Server (stockage temporaire)  
+- Application Electron (affichage overlay)  
+
+---
+
+# 🔄 Fonctionnement
+
+1. Un message est envoyé sur Discord  
+2. Il est enregistré dans la base de données  
+3. L’application Electron récupère les messages  
+4. Le message est affiché en overlay  
+5. Il est marqué comme traité  
+6. Il est supprimé du flux actif  
+
+---
+
+# ⚙️ Gestion des données
+
+- Les messages sont stockés temporairement  
+- Chaque message est affiché une seule fois  
+- Les messages déjà traités sont marqués  
+- Un nettoyage automatique supprime les anciens messages  
+
+---
+
+# 🧠 Concept
+
+Discord → SQL Server → Electron → Overlay → Suppression
+
+---
+
+# 🚀 Objectif
 
 Ce projet a été conçu pour explorer :
 
-Les systèmes temps réel
-Les overlays desktop
-L’intégration Discord + application desktop
-La gestion de flux de données live
-⚠️ Statut
+- les systèmes temps réel  
+- les overlays desktop  
+- l’intégration Discord + application desktop  
+- la gestion de flux de données live  
 
-Projet personnel / démonstration technique
+---
 
-Aucune installation publique disponible.
+# ⚠️ Statut
 
-🔮 Améliorations futures
-Système temps réel sans polling
-Interface de configuration utilisateur
-Animations d’overlay avancées
-Support multi-écran
-Personnalisation complète
-👨‍💻 Auteur
+Projet personnel / démonstration technique  
+Aucune installation publique disponible
+
+---
+
+# 🔮 Améliorations futures
+
+- système temps réel sans polling  
+- interface de configuration  
+- animations d’overlay  
+- support multi-écran  
+- personnalisation de l’interface  
+
+---
+
+# 👨‍💻 Auteur
 
 Noah

@@ -15,35 +15,35 @@ module.exports = {
             return message.reply("❌ Tu dois envoyer une image ou une vidéo !")
         }
 
-        const attachement = attachments.first();
-        const media =  attachement.url;
-        const texte =  message.content.replace("!livechat", "").trim();
-        const user = {
+        const livechat = {
+            media : attachments.first().url,
+            texte : message.content.replace("!livechat", "").trim(),
+            user : {
             pseudo : message.author.username,
             avatar : message.author.displayAvatarURL()
-        };
-
-        
-        if(!texte && media){
-            console.log("Utilisateur : ", user)
-            console.log("Lien : ", media);
-            await insertDataBase({media,texte,user});
+        }
+    }
+       
+        if(!livechat.texte && livechat.media){
+            console.log("Utilisateur : ", livechat.user)
+            console.log("Lien : ", livechat.media);
+            await insertDataBase(livechat);
             message.reply(" ✅ LiveChat envoyé !")
             
             
         }
 
-        if(texte && !media){
+        if(livechat.texte && !livechat.media){
            return message.reply("❌ Tu dois envoyer une image ou une vidéo !")
         }
 
 
 
-        if(texte && media) {
-        console.log("Utilisateur : ", user)
-        console.log("Lien : ", media);
-        console.log("Message : ", texte)
-        await insertDataBase({media,texte,user});
+        if(livechat.texte && livechat.media) {
+        console.log("Utilisateur : ", livechat.user)
+        console.log("Lien : ", livechat.media);
+        console.log("Message : ", livechat.texte)
+        await insertDataBase(livechat);
         message.reply(" ✅ LiveChat envoyé !")
         }
     }

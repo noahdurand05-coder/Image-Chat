@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const { insertDataBase } = require("../message")
+const { insertDataBase } = require("../../API/message")
 
 module.exports = {
 

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const Discord = require("discord.js")
 const { GatewayIntentBits } = require("discord.js");
 const bot = new Discord.Client({
@@ -8,13 +9,12 @@ const bot = new Discord.Client({
     ]
 })
 const loadCommands = require("./Loader/loadCommands.js")
-const config = require("./config.js")
-const LCChannel = require("./config.js");
+
 
 
 bot.commands = new Discord.Collection()
 
-bot.login(config.token)
+bot.login(process.env.TOKEN)    
 loadCommands(bot)
 
 bot.on("ready", () => {
@@ -26,7 +26,7 @@ bot.on("ready", () => {
 bot.on("messageCreate", async (message) => {
     if (message.author.bot) return;
 
-    if (message.channel.id !== config.channelID) return;
+    if (message.channel.id !== process.env.CHANNEL_ID) return;
 
     const prefix = "!"
 
@@ -48,6 +48,6 @@ bot.on("messageCreate", async (message) => {
 })
 
 
-const { connectDB } = require("./db.js");
 
-connectDB()
+
+

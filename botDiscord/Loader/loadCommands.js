@@ -3,6 +3,7 @@ const fs = require("fs")
 
 
 module.exports = async (bot) => {
+//Chargement des commandes du bot
 
     fs.readdirSync("./Commandes").filter(f => f.endsWith("js")).forEach(async file => {
 

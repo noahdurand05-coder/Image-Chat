@@ -1,31 +1,52 @@
-const {sql} = require("./db")
+const { pool } = require("./db");
 
+//
 async function insertDataBase({ media, texte, user }) {
 
-     try {
-        console.log("➡ INSERT START");
+    try {
+        console.log("Insertion dans la base de données ...")
 
-        const request = new sql.Request();
+        const query = "INSERT INTO messages (media, texte, userProfilePicture, username) VALUES (?, ?, ?, ?)";
+        const values = [media,
+                       texte,
+                       user.avatar,
+                       user.pseudo
+        ];
 
-        request.input("media", sql.NVarChar(sql.MAX), media);
-        request.input("texte", sql.NVarChar(sql.MAX), texte);
-        request.input("avatar", sql.NVarChar(sql.MAX), user.avatar);
-        request.input("username", sql.NVarChar(50), user.pseudo);
+        await pool.query(query, values);
 
-        const result = await request.query(`
-            INSERT INTO Messages
-            (media, texte, userProfilePicture, username)
-            VALUES
-            (@media, @texte, @avatar, @username)
-        `);
+        console.log("Insertion réussie !");
 
-        console.log("✅ Ligne insérée avec succès ! ");
-        
+
+
 
     } catch (err) {
-        console.log("❌ SQL ERROR:", err);
+        console.log("Erreur lors de l'insertion dans la base de données :", err);
+        throw err;
     }
 }
 
+async function getUnconsumedMessages() {
+    try {
+        console.log("Récupération des messages non consommés depuis la base de données ...")
+        const [rows] = await pool.query("SELECT * FROM messages WHERE consumed = 0 ORDER BY dateCrea DESC");
+        console.log("Messages récupérés avec succès !");
+        return rows;
+    } catch (err) {
+        console.error("Erreur lors de la récupération des messages :", err);
+        throw err;
+    }
+}
 
-module.exports = {insertDataBase};
+async function consumeMessages(id) {
+    try {
+        console.log(`Marquage du message ${id} comme consommé ...`);
+        await pool.query("UPDATE messages SET consumed = 1 WHERE id = ?", [id]);
+        console.log(`Message ${id} marqué comme consommé !`);
+    } catch (err) {
+        console.error(`Erreur lors du marquage du message ${id} comme consommé :`, err);
+        throw err;
+    }
+}
+
+module.exports = { insertDataBase, getUnconsumedMessages, consumeMessages };

@@ -1,0 +1,245 @@
+/* ============================================================
+   1. Police utilisée par le pseudo et le message
+   ============================================================ */
+
+@font-face {
+    font-family: "Boring Time";
+    src: url("assets/fonts/boring-time.otf") format("opentype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+/* ============================================================
+   2. Valeurs communes à tout l'overlay
+   ============================================================ */
+
+:root {
+    color-scheme: dark;
+    font-family: Arial, Helvetica, sans-serif;
+
+    --livechat-font: "Boring Time", Arial, Helvetica, sans-serif;
+    --text-color: #ffffff;
+    --outline-color: #000000;
+    --speaking-color: #23a55a;
+    --overlay-padding: 32px;
+}
+
+* {
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: transparent;
+    user-select: none;
+}
+
+/* ============================================================
+   3. Zone plein écran et cinq positions possibles
+   ============================================================ */
+
+.overlay-root {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    padding: var(--overlay-padding);
+}
+
+.position-top-left {
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.position-top-right {
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.position-center {
+    align-items: center;
+    justify-content: center;
+}
+
+.position-bottom-left {
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.position-bottom-right {
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+/* ============================================================
+   4. Trois tailles prédéfinies
+   Chaque classe change le média, l'avatar et les textes.
+   ============================================================ */
+
+.size-small {
+    --media-max-width: 480px;
+    --media-max-height: 320px;
+    --avatar-size: 40px;
+    --username-size: 28px;
+    --text-size: 22px;
+    --username-outline-size: 4px;
+    --text-outline-size: 3px;
+}
+
+.size-medium {
+    --media-max-width: 720px;
+    --media-max-height: 480px;
+    --avatar-size: 52px;
+    --username-size: 36px;
+    --text-size: 28px;
+    --username-outline-size: 5px;
+    --text-outline-size: 4px;
+}
+
+.size-large {
+    --media-max-width: 960px;
+    --media-max-height: 640px;
+    --avatar-size: 66px;
+    --username-size: 46px;
+    --text-size: 36px;
+    --username-outline-size: 6px;
+    --text-outline-size: 5px;
+}
+
+/* ============================================================
+   5. Contenu complet d'un LiveChat
+   Les deux variables calculées évitent de répéter les limites.
+   ============================================================ */
+
+.livechat-content {
+    --display-max-width: min(var(--media-max-width), calc(100vw - 64px));
+    --display-max-height: min(var(--media-max-height), calc(100vh - 220px));
+
+    display: inline-grid;
+    width: max-content;
+    max-width: var(--display-max-width);
+    opacity: 0;
+    transform: translateY(24px) scale(0.88);
+    will-change: opacity, transform;
+}
+
+/* Ligne placée au-dessus du média. */
+.livechat-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.livechat-avatar {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    flex: 0 0 auto;
+    border: 4px solid var(--speaking-color);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(35, 165, 90, 0.85);
+    object-fit: cover;
+}
+
+/* Styles partagés par le pseudo et le message. */
+.livechat-username,
+.livechat-text {
+    color: var(--text-color);
+    font-family: var(--livechat-font);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    paint-order: stroke fill;
+}
+
+.livechat-username {
+    min-width: 0;
+    overflow: hidden;
+    font-size: var(--username-size);
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-text-stroke: var(--username-outline-size) var(--outline-color);
+}
+
+/* Image ou vidéo, sans déformation. */
+.livechat-media {
+    width: max-content;
+    max-width: var(--display-max-width);
+    max-height: var(--display-max-height);
+}
+
+.livechat-media img,
+.livechat-media video {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: var(--display-max-width);
+    max-height: var(--display-max-height);
+    object-fit: contain;
+}
+
+/* Masque complètement le média inactif malgré le display: block ci-dessus. */
+.livechat-media img[hidden],
+.livechat-media video[hidden] {
+    display: none !important;
+}
+
+/* Message centré sous le média. */
+.livechat-text {
+    width: 100%;
+    max-width: var(--display-max-width);
+    margin: 14px 0 0;
+    padding: 0;
+    overflow-wrap: anywhere;
+    font-size: var(--text-size);
+    line-height: 1.35;
+    text-align: center;
+    -webkit-text-stroke: var(--text-outline-size) var(--outline-color);
+}
+
+/* ============================================================
+   6. Animation pop-up imposée
+   ============================================================ */
+
+.livechat-content.is-entering {
+    animation: popup-in 360ms cubic-bezier(0.2, 0.9, 0.25, 1.25) forwards;
+}
+
+.livechat-content.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.livechat-content.is-exiting {
+    animation: popup-out 280ms ease-in forwards;
+}
+
+@keyframes popup-in {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.88);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes popup-out {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-14px) scale(0.94);
+    }
+}

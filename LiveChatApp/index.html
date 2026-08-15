@@ -3,13 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiveChat Main Page</title>
+    <title>LiveChat — Paramètres</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <h1>LiveChat 🎊</h1>
-    </header>
-    
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="brand">
+                <span class="brand-logo" aria-hidden="true">LC</span>
+
+                <div>
+                    <p class="brand-kicker">Overlay Discord</p>
+                    <h1>LiveChat</h1>
+                </div>
+            </div>
+
+            <p class="app-description">
+                Choisis l'emplacement et la taille de tes prochains messages.
+                Les modifications sont appliquées immédiatement à l'overlay.
+            </p>
+        </header>
+
+        <main class="settings-layout">
+            <section class="settings-card" aria-labelledby="position-title">
+                <div class="section-heading">
+                    <span class="section-number" aria-hidden="true">1</span>
+
+                    <div>
+                        <h2 id="position-title">Position</h2>
+                        <p>Emplacement du LiveChat sur l'écran principal.</p>
+                    </div>
+                </div>
+
+                <div class="position-grid" aria-label="Choix de la position">
+                    <button class="choice-button position-choice" type="button"
+                        data-setting="position" data-value="top-left">
+                        <span class="position-preview" aria-hidden="true">
+                            <span class="position-marker"></span>
+                        </span>
+                        <span>Haut gauche</span>
+                    </button>
+
+                    <button class="choice-button position-choice" type="button"
+                        data-setting="position" data-value="top-right">
+                        <span class="position-preview" aria-hidden="true">
+                            <span class="position-marker"></span>
+                        </span>
+                        <span>Haut droite</span>
+                    </button>
+
+                    <button class="choice-button position-choice" type="button"
+                        data-setting="position" data-value="center">
+                        <span class="position-preview" aria-hidden="true">
+                            <span class="position-marker"></span>
+                        </span>
+                        <span>Centre</span>
+                    </button>
+
+                    <button class="choice-button position-choice" type="button"
+                        data-setting="position" data-value="bottom-left">
+                        <span class="position-preview" aria-hidden="true">
+                            <span class="position-marker"></span>
+                        </span>
+                        <span>Bas gauche</span>
+                    </button>
+
+                    <button class="choice-button position-choice" type="button"
+                        data-setting="position" data-value="bottom-right">
+                        <span class="position-preview" aria-hidden="true">
+                            <span class="position-marker"></span>
+                        </span>
+                        <span>Bas droite</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="settings-card" aria-labelledby="size-title">
+                <div class="section-heading">
+                    <span class="section-number" aria-hidden="true">2</span>
+
+                    <div>
+                        <h2 id="size-title">Taille</h2>
+                        <p>Dimensions maximales du média et des textes.</p>
+                    </div>
+                </div>
+
+                <div class="size-grid" aria-label="Choix de la taille">
+                    <button class="choice-button size-choice" type="button"
+                        data-setting="size" data-value="small">
+                        <span class="size-preview size-preview-small" aria-hidden="true"></span>
+                        <span>Petit</span>
+                    </button>
+
+                    <button class="choice-button size-choice" type="button"
+                        data-setting="size" data-value="medium">
+                        <span class="size-preview size-preview-medium" aria-hidden="true"></span>
+                        <span>Moyen</span>
+                    </button>
+
+                    <button class="choice-button size-choice" type="button"
+                        data-setting="size" data-value="large">
+                        <span class="size-preview size-preview-large" aria-hidden="true"></span>
+                        <span>Grand</span>
+                    </button>
+                </div>
+            </section>
+
+            <aside class="fixed-rules">
+                <strong>Durées automatiques</strong>
+                <span>Images : 15 secondes</span>
+                <span>Vidéos : durée réelle, 60 secondes maximum</span>
+            </aside>
+
+            <p id="status" class="status-message" role="status" aria-live="polite">
+                Chargement des paramètres…
+            </p>
+        </main>
+    </div>
+
+    <script src="renderer.js"></script>
 </body>
 </html>

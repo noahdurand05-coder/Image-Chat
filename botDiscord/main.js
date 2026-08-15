@@ -44,9 +44,9 @@ bot.on("messageCreate", async (message) => {
     if (!command) return;
 
     try {
-        command.execute(bot, message, args)
+        await command.execute(bot, message, args)
     } catch (err) {
-        console.error(err);
+        console.error("La commande Discord n'a pas pu être exécutée.");
         message.reply('Erreur commande')
     }
 })

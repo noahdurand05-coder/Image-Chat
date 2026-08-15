@@ -17,10 +17,11 @@ const pool = sql.createPool({
 
 async function connectDB() {
     try {
-        await pool.getConnection();
+        const connection = await pool.getConnection();
+        connection.release();
         console.log("✅ Base de données connectée avec succès");
     } catch (err) {
-        console.error("❌ Erreur SQL :", err.message);
+        console.error("❌ Connexion à la base de données impossible.");
         throw err;
     }
 }

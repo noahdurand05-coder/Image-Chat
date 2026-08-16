@@ -1,9 +1,18 @@
 {
+  "name": "livechat-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/serveur.js",
+    "test:db": "node src/scripts/testDatabase.js",
+    "test:security": "node ../shared/tests/mediaPolicy.test.js && node ../shared/tests/livechatPolicy.test.js && node src/validation/tests/livechatValidation.test.js"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mssql": "^12.7.0",
-    "mysql2": "^3.22.6"
+    "mysql2": "^3.22.6",
+    "ws": "^8.21.3"
   }
 }

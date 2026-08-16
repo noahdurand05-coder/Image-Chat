@@ -1,0 +1,148 @@
+/* ============================================================
+   Page Commandes Discord
+   ============================================================ */
+
+.commands-layout {
+    display: grid;
+    flex: 1;
+    align-content: start;
+    gap: 20px;
+}
+
+.command-card {
+    padding: 24px;
+    background: var(--panel-background);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    box-shadow: var(--panel-shadow);
+    backdrop-filter: blur(14px);
+}
+
+.command-card.is-danger {
+    border-color: rgba(239, 68, 68, 0.25);
+}
+
+.command-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 15px;
+}
+
+.command-name {
+    padding: 6px 10px;
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--panel-border-strong);
+    border-radius: 9px;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.command-badge {
+    padding: 6px 10px;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--panel-border);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.command-badge.is-control,
+.command-badge.is-info {
+    color: #c4b5fd;
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(167, 139, 250, 0.28);
+}
+
+.command-badge.is-warning {
+    color: #fcd34d;
+    background: rgba(245, 158, 11, 0.09);
+    border-color: rgba(245, 158, 11, 0.25);
+}
+
+.command-badge.is-success {
+    color: #86efac;
+    background: rgba(34, 197, 94, 0.09);
+    border-color: rgba(34, 197, 94, 0.25);
+}
+
+.command-badge.is-danger {
+    color: #fca5a5;
+    background: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.24);
+}
+
+.command-summary {
+    margin-bottom: 17px;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.command-steps {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding-left: 22px;
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.command-steps code,
+.command-example code {
+    color: #e7e9ef;
+    font-family: Consolas, "Courier New", monospace;
+    font-weight: 700;
+}
+
+.command-example {
+    display: grid;
+    gap: 7px;
+    margin-top: 18px;
+    padding: 14px 16px;
+    color: var(--text-secondary);
+    background: rgba(10, 13, 20, 0.68);
+    border: 1px solid var(--panel-border);
+    border-left: 3px solid #657086;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.command-example code {
+    font-size: 14px;
+}
+
+.commands-notice {
+    padding: 18px 20px;
+    color: var(--text-secondary);
+    background: rgba(18, 22, 31, 0.78);
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    font-size: 13px;
+}
+
+.commands-notice strong {
+    color: var(--text-primary);
+}
+
+.commands-notice ul {
+    display: grid;
+    gap: 7px;
+    margin: 12px 0 0;
+    padding-left: 20px;
+    line-height: 1.45;
+}
+
+@media (min-width: 1050px) {
+    .commands-layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .commands-notice {
+        grid-column: 1 / -1;
+    }
+}

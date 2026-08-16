@@ -1,0 +1,317 @@
+/* ============================================================
+   Tutoriel de démarrage
+   ============================================================ */
+
+.tutorial-dialog {
+    width: min(650px, calc(100vw - 48px));
+    max-height: calc(100vh - 48px);
+    padding: 0;
+    color: var(--text-primary);
+    overflow: hidden;
+    background: #171b25;
+    border: 1px solid var(--primary-border);
+    border-radius: 22px;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.65);
+}
+
+.tutorial-dialog::backdrop {
+    background: rgba(5, 7, 12, 0.78);
+    backdrop-filter: blur(6px);
+}
+
+.tutorial-dialog[open] {
+    animation: tutorial-appearance 180ms ease-out;
+}
+
+.tutorial-shell {
+    display: flex;
+    flex-direction: column;
+}
+
+/* En-tête : numéro de l'étape, titre et bouton de fermeture. */
+.tutorial-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 26px 28px 20px;
+    border-bottom: 1px solid var(--panel-border);
+}
+
+.tutorial-step-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--primary-light);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.tutorial-header h2 {
+    margin: 0;
+    font-size: clamp(23px, 4vw, 30px);
+    line-height: 1.15;
+}
+
+.tutorial-close {
+    display: grid;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    place-items: center;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 150ms ease, background 150ms ease, border-color 150ms ease;
+}
+
+.tutorial-close:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--panel-border-strong);
+}
+
+/* Contenu principal de chaque étape. */
+.tutorial-body {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    gap: 14px 24px;
+    min-height: 255px;
+    padding: 28px;
+}
+
+.tutorial-illustration {
+    display: grid;
+    grid-row: 1 / span 2;
+    align-self: start;
+    width: 112px;
+    aspect-ratio: 1;
+    color: #fff;
+    background:
+        radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.25), transparent 26%),
+        linear-gradient(145deg, var(--primary), var(--primary-strong));
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 30px;
+    box-shadow: 0 16px 38px rgba(109, 40, 217, 0.32);
+    place-items: center;
+    font-size: 34px;
+    font-weight: 900;
+}
+
+.tutorial-description {
+    align-self: end;
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 650;
+    line-height: 1.55;
+}
+
+.tutorial-points {
+    align-self: start;
+    margin: 0;
+    padding: 0;
+    color: var(--text-secondary);
+    list-style: none;
+}
+
+.tutorial-points li {
+    position: relative;
+    margin-top: 9px;
+    padding-left: 22px;
+    line-height: 1.45;
+}
+
+.tutorial-points li::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--success);
+    font-weight: 900;
+    content: "✓";
+}
+
+/* Petits repères indiquant l'avancement dans les cinq étapes. */
+.tutorial-progress {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 28px 22px;
+}
+
+.tutorial-progress-dot {
+    width: 9px;
+    height: 9px;
+    background: var(--text-muted);
+    border-radius: 999px;
+    opacity: 0.45;
+    transition: width 160ms ease, background 160ms ease, opacity 160ms ease;
+}
+
+.tutorial-progress-dot.is-completed {
+    background: var(--primary-light);
+    opacity: 0.75;
+}
+
+.tutorial-progress-dot.is-current {
+    width: 28px;
+    background: var(--primary);
+    opacity: 1;
+}
+
+/* Navigation située en bas du tutoriel. */
+.tutorial-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 28px;
+    background: rgba(8, 11, 17, 0.38);
+    border-top: 1px solid var(--panel-border);
+}
+
+.tutorial-navigation {
+    display: flex;
+    gap: 10px;
+}
+
+.tutorial-button,
+.tutorial-open-button {
+    border-radius: 10px;
+    font-weight: 750;
+    cursor: pointer;
+    transition: color 150ms ease, background 150ms ease, border-color 150ms ease,
+        transform 150ms ease;
+}
+
+.tutorial-button {
+    min-height: 40px;
+    padding: 9px 16px;
+    border: 1px solid transparent;
+}
+
+.tutorial-button:hover,
+.tutorial-open-button:hover {
+    transform: translateY(-1px);
+}
+
+.tutorial-button-primary {
+    color: #fff;
+    background: var(--primary-strong);
+    border-color: var(--primary);
+}
+
+.tutorial-button-primary:hover {
+    background: var(--primary);
+}
+
+.tutorial-button-secondary {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--panel-border-strong);
+}
+
+.tutorial-button-secondary:hover {
+    background: rgba(255, 255, 255, 0.11);
+}
+
+.tutorial-button-quiet {
+    padding-inline: 0;
+    color: var(--text-muted);
+    background: transparent;
+}
+
+.tutorial-button-quiet:hover {
+    color: var(--text-primary);
+}
+
+/* Bouton permanent permettant de revoir le guide depuis le pied de page. */
+.tutorial-open-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 12px;
+    padding: 7px 11px;
+    color: var(--primary-light);
+    background: var(--primary-soft);
+    border: 1px solid var(--primary-border);
+    font-size: 12px;
+}
+
+.tutorial-open-button span {
+    display: grid;
+    width: 18px;
+    height: 18px;
+    color: #fff;
+    background: var(--primary-strong);
+    border-radius: 50%;
+    place-items: center;
+    font-size: 11px;
+}
+
+.tutorial-open-button:hover {
+    color: #fff;
+    background: rgba(139, 92, 246, 0.28);
+}
+
+.tutorial-button:focus-visible,
+.tutorial-close:focus-visible,
+.tutorial-open-button:focus-visible {
+    outline: 3px solid rgba(196, 181, 253, 0.45);
+    outline-offset: 2px;
+}
+
+@keyframes tutorial-appearance {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 700px) {
+    .tutorial-dialog {
+        width: calc(100vw - 28px);
+    }
+
+    .tutorial-header,
+    .tutorial-body,
+    .tutorial-footer {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .tutorial-body {
+        grid-template-columns: 76px minmax(0, 1fr);
+        gap: 12px 18px;
+    }
+
+    .tutorial-illustration {
+        width: 76px;
+        border-radius: 22px;
+        font-size: 25px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tutorial-dialog[open] {
+        animation: none;
+    }
+
+    .tutorial-button,
+    .tutorial-close,
+    .tutorial-open-button,
+    .tutorial-progress-dot {
+        transition: none;
+    }
+}

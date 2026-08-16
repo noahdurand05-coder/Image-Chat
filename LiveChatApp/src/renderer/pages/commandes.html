@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveChat — Commandes</title>
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/pages/commands.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="header-topbar">
+                <div class="brand">
+                    <span class="brand-logo" aria-hidden="true">LC</span>
+
+                    <div>
+                        <p class="brand-kicker">Overlay Discord</p>
+                        <h1>LiveChat</h1>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="header-status-row">
+                        <div id="application-status" class="application-status is-waiting"
+                            role="status" aria-live="polite">
+                            <span id="application-status-label">Connexion en cours…</span>
+                        </div>
+                    </div>
+
+                    <nav class="app-navigation" aria-label="Navigation principale">
+                        <a class="navigation-link" href="index.html">Paramètres</a>
+                        <a class="navigation-link is-active" href="commandes.html"
+                            aria-current="page">
+                            Commandes
+                        </a>
+                        <a id="admin-navigation" class="navigation-link"
+                            href="administration.html" hidden>
+                            Administration
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <p class="app-description">
+                Retrouve ici les commandes disponibles sur Discord et la manière
+                de les utiliser avec l'overlay.
+            </p>
+        </header>
+
+        <main class="commands-layout">
+            <section class="command-card" aria-labelledby="livechat-command-title">
+                <div class="command-heading">
+                    <code id="livechat-command-title" class="command-name">!livechat</code>
+                    <span class="command-badge">Afficher un média</span>
+                </div>
+
+                <p class="command-summary">
+                    Envoie une image ou une vidéo Discord dans la file d'attente
+                    du LiveChat. Tu peux ajouter un message sous le média.
+                </p>
+
+                <ol class="command-steps">
+                    <li>Écris <code>!livechat</code> dans le salon Discord configuré.</li>
+                    <li>Ajoute un seul média autorisé en pièce jointe.</li>
+                    <li>Ajoute du texte après la commande si tu le souhaites.</li>
+                    <li>Envoie le message : l'overlay s'occupe du reste.</li>
+                </ol>
+
+                <div class="command-example">
+                    <span>Exemple avec une pièce jointe :</span>
+                    <code>!livechat Voici mon message</code>
+                </div>
+            </section>
+
+            <section class="command-card" aria-labelledby="stop-command-title">
+                <div class="command-heading">
+                    <code id="stop-command-title" class="command-name">!stop</code>
+                    <span class="command-badge">Arrêter l'affichage</span>
+                </div>
+
+                <p class="command-summary">
+                    Interrompt immédiatement le LiveChat actuellement visible.
+                    Le message arrêté est marqué comme consommé et la file peut continuer.
+                </p>
+
+                <ol class="command-steps">
+                    <li>Attends qu'une image ou une vidéo soit affichée.</li>
+                    <li>Écris <code>!stop</code> dans le salon Discord configuré.</li>
+                    <li>L'overlay masque le média et le bot répond « LiveChat Stoppé ».</li>
+                </ol>
+            </section>
+
+            <section class="command-card" aria-labelledby="next-command-title">
+                <div class="command-heading">
+                    <code id="next-command-title" class="command-name">!next</code>
+                    <span class="command-badge is-control">Passer au suivant</span>
+                </div>
+
+                <p class="command-summary">
+                    Interrompt le média visible et lance immédiatement le prochain
+                    LiveChat présent dans la file d'attente.
+                </p>
+
+                <div class="command-example">
+                    <span>Commande :</span>
+                    <code>!next</code>
+                </div>
+            </section>
+
+            <section class="command-card" aria-labelledby="pause-command-title">
+                <div class="command-heading">
+                    <code id="pause-command-title" class="command-name">!pause</code>
+                    <span class="command-badge is-warning">Mettre en pause</span>
+                </div>
+
+                <p class="command-summary">
+                    Empêche le démarrage des prochains LiveChats. Le média déjà
+                    visible termine normalement son affichage.
+                </p>
+
+                <div class="command-example">
+                    <span>Commande :</span>
+                    <code>!pause</code>
+                </div>
+            </section>
+
+            <section class="command-card" aria-labelledby="resume-command-title">
+                <div class="command-heading">
+                    <code id="resume-command-title" class="command-name">!resume</code>
+                    <span class="command-badge is-success">Reprendre</span>
+                </div>
+
+                <p class="command-summary">
+                    Réactive l'affichage après une pause. Les messages en attente
+                    reprennent dans leur ordre d'arrivée.
+                </p>
+
+                <div class="command-example">
+                    <span>Commande :</span>
+                    <code>!resume</code>
+                </div>
+            </section>
+
+            <section class="command-card is-danger" aria-labelledby="clear-command-title">
+                <div class="command-heading">
+                    <code id="clear-command-title" class="command-name">!clear</code>
+                    <span class="command-badge is-danger">Vider la file</span>
+                </div>
+
+                <p class="command-summary">
+                    Arrête le média actuel et retire tous les LiveChats encore en
+                    attente pour l'ensemble des applications.
+                </p>
+
+                <div class="command-example">
+                    <span>Attention, cette action concerne toute la file :</span>
+                    <code>!clear</code>
+                </div>
+            </section>
+
+            <section class="command-card" aria-labelledby="status-command-title">
+                <div class="command-heading">
+                    <code id="status-command-title" class="command-name">!status</code>
+                    <span class="command-badge is-info">Voir l'état</span>
+                </div>
+
+                <p class="command-summary">
+                    Indique si le LiveChat est actif ou en pause, le nombre
+                    d'applications actives et le nombre de messages en attente.
+                </p>
+
+                <div class="command-example">
+                    <span>Commande :</span>
+                    <code>!status</code>
+                </div>
+            </section>
+
+            <section class="command-card" aria-labelledby="ping-command-title">
+                <div class="command-heading">
+                    <code id="ping-command-title" class="command-name">!ping</code>
+                    <span class="command-badge">Tester le bot</span>
+                </div>
+
+                <p class="command-summary">
+                    Vérifie rapidement que le bot Discord est bien démarré et
+                    qu'il reçoit les commandes dans le salon configuré.
+                </p>
+
+                <div class="command-example">
+                    <span>Commande :</span>
+                    <code>!ping</code>
+                </div>
+            </section>
+
+            <aside class="commands-notice">
+                <strong>À savoir</strong>
+                <ul>
+                    <li>Les commandes fonctionnent uniquement dans le salon Discord configuré.</li>
+                    <li>Les liens YouTube ne sont pas acceptés : il faut joindre le fichier.</li>
+                    <li>Formats acceptés : JPG, PNG, GIF, WebP, AVIF, MP4, WebM, MOV et M4V.</li>
+                    <li>Limites : 10 Mo par image et 25 Mo par vidéo.</li>
+                    <li>Chaque utilisateur doit attendre 20 secondes entre deux LiveChats.</li>
+                    <li>La pause n'interrompt pas le média déjà visible.</li>
+                    <li><code>!clear</code> vide la file pour toutes les applications.</li>
+                    <li>Une image reste affichée 15 secondes.</li>
+                    <li>Une vidéo utilise sa durée réelle, avec une limite de 60 secondes.</li>
+                </ul>
+            </aside>
+        </main>
+
+        <footer class="app-footer">
+            <p>LiveChat — Créée par <strong>Suiki</strong></p>
+        </footer>
+    </div>
+
+    <script src="../scripts/components/connectionStatus.js"></script>
+    <script src="../scripts/navigation.js"></script>
+</body>
+</html>

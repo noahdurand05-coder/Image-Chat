@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveChat — Administration</title>
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/components/toast.css">
+    <link rel="stylesheet" href="../styles/pages/administration.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="header-topbar">
+                <div class="brand">
+                    <span class="brand-logo" aria-hidden="true">LC</span>
+
+                    <div>
+                        <p class="brand-kicker">Overlay Discord</p>
+                        <h1>LiveChat</h1>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="header-status-row">
+                        <div id="application-status" class="application-status is-waiting"
+                            role="status" aria-live="polite">
+                            <span id="application-status-label">Connexion en cours…</span>
+                        </div>
+                    </div>
+
+                    <nav class="app-navigation" aria-label="Navigation principale">
+                        <a class="navigation-link" href="index.html">Paramètres</a>
+                        <a class="navigation-link" href="commandes.html">Commandes</a>
+                        <a class="navigation-link is-active" href="administration.html"
+                            aria-current="page">
+                            Administration
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <p class="app-description">
+                Cette page privée permet d'accepter ou de retirer l'accès
+                aux utilisateurs du LiveChat.
+            </p>
+        </header>
+
+        <p id="admin-access-check" class="admin-access-check" aria-live="polite">
+            Vérification de l'accès administrateur…
+        </p>
+
+        <main id="admin-page-content" class="admin-panel admin-page-panel"
+            aria-labelledby="admin-title" hidden>
+            <div class="admin-heading">
+                <div>
+                    <span class="account-kicker">Accès administrateur</span>
+                    <h2 id="admin-title">Utilisateurs autorisés</h2>
+                    <p>Accepte, refuse ou bloque individuellement un utilisateur.</p>
+                </div>
+
+                <button id="refresh-users" class="secondary-button" type="button">
+                    Actualiser
+                </button>
+            </div>
+
+            <div class="admin-filters" role="group" aria-label="Filtrer les utilisateurs">
+                <button class="admin-filter is-selected" type="button"
+                    data-admin-filter="all" aria-pressed="true">
+                    <span>Tous</span>
+                    <strong id="admin-count-all">0</strong>
+                </button>
+
+                <button class="admin-filter" type="button"
+                    data-admin-filter="online" aria-pressed="false">
+                    <span><i class="filter-dot is-online" aria-hidden="true"></i>En ligne</span>
+                    <strong id="admin-count-online">0</strong>
+                </button>
+
+                <button class="admin-filter" type="button"
+                    data-admin-filter="offline" aria-pressed="false">
+                    <span><i class="filter-dot is-offline" aria-hidden="true"></i>Hors ligne</span>
+                    <strong id="admin-count-offline">0</strong>
+                </button>
+
+                <button class="admin-filter" type="button"
+                    data-admin-filter="pending" aria-pressed="false">
+                    <span><i class="filter-dot is-waiting" aria-hidden="true"></i>En attente</span>
+                    <strong id="admin-count-pending">0</strong>
+                </button>
+            </div>
+
+            <div id="admin-users" class="admin-users"></div>
+            <p id="admin-status" class="admin-status" aria-live="polite"></p>
+        </main>
+
+        <dialog id="admin-confirm-dialog" class="admin-confirm-dialog"
+            aria-labelledby="admin-confirm-title">
+            <form method="dialog" class="admin-confirm-content">
+                <span class="confirm-icon" aria-hidden="true">!</span>
+                <div>
+                    <h2 id="admin-confirm-title">Confirmer cette action</h2>
+                    <p id="admin-confirm-message"></p>
+                </div>
+
+                <div class="admin-confirm-actions">
+                    <button id="admin-confirm-cancel" class="dialog-button dialog-button-cancel"
+                        type="submit" value="cancel">
+                        Annuler
+                    </button>
+                    <button id="admin-confirm-submit" class="dialog-button dialog-button-danger"
+                        type="submit" value="confirm">
+                        Confirmer
+                    </button>
+                </div>
+            </form>
+        </dialog>
+
+        <footer class="app-footer">
+            <p>LiveChat — Créée par <strong>Suiki</strong></p>
+        </footer>
+    </div>
+
+    <script src="../scripts/components/connectionStatus.js"></script>
+    <script src="../scripts/components/toast.js"></script>
+    <script src="../scripts/adminRenderer.js"></script>
+</body>
+</html>

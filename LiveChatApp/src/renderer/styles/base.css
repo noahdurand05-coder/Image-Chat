@@ -1,0 +1,98 @@
+/* ============================================================
+   Base commune : couleurs, page et pied de page
+   ============================================================ */
+
+:root {
+    color-scheme: dark;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+
+    --page-background: #0d1017;
+    --panel-background: rgba(23, 27, 37, 0.9);
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --panel-border-strong: rgba(255, 255, 255, 0.14);
+    --button-background: rgba(88, 65, 145, 0.72);
+    --button-hover: rgba(112, 79, 184, 0.9);
+    --primary: #8b5cf6;
+    --primary-light: #c4b5fd;
+    --primary-strong: #6d28d9;
+    --primary-soft: rgba(139, 92, 246, 0.18);
+    --primary-border: rgba(167, 139, 250, 0.4);
+    --success: #57f287;
+    --text-primary: #f7f8fb;
+    --text-secondary: #9da7ba;
+    --text-muted: #737e92;
+    --danger: #ff6b7a;
+    --panel-shadow: 0 20px 55px rgba(0, 0, 0, 0.28);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    min-width: 620px;
+    min-height: 100vh;
+    margin: 0;
+    color: var(--text-primary);
+    background:
+        radial-gradient(circle at 88% 0%, rgba(74, 85, 120, 0.24), transparent 36%),
+        radial-gradient(circle at 8% 100%, rgba(44, 52, 76, 0.18), transparent 32%),
+        var(--page-background);
+    background-attachment: fixed;
+}
+
+/* Quadrillage très léger pour donner de la profondeur au fond. */
+body::before {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    content: "";
+}
+
+button {
+    font: inherit;
+}
+
+h1,
+h2,
+p {
+    margin-top: 0;
+}
+
+.app-shell {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 1240px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 34px;
+}
+
+.app-footer {
+    margin-top: 28px;
+    padding-top: 18px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--panel-border);
+    font-size: 12px;
+    text-align: center;
+}
+
+.app-footer p {
+    margin: 0;
+}
+
+.app-footer strong {
+    color: var(--text-primary);
+}
+
+[hidden] {
+    display: none !important;
+}

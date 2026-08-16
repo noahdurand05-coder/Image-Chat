@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveChat Overlay</title>
+    <link rel="stylesheet" href="../styles/pages/overlay.css">
+</head>
+
+<body>
+    <main id="overlay-root" class="overlay-root position-center size-medium" aria-live="polite">
+        <!-- Ce bloc place le LiveChat sans participer à son animation. -->
+        <div class="livechat-positioner">
+            <div id="livechat-content" class="livechat-content" hidden>
+                <header class="livechat-author">
+                    <img id="livechat-avatar" class="livechat-avatar" alt="">
+                    <strong id="livechat-username" class="livechat-username"></strong>
+                </header>
+
+                <div id="livechat-media" class="livechat-media">
+                    <img id="livechat-image" alt="" hidden>
+                    <video id="livechat-video" playsinline hidden></video>
+                </div>
+
+                <p id="livechat-text" class="livechat-text"></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../scripts/overlayDisplay.js"></script>
+    <script src="../scripts/overlay.js"></script>
+</body>
+</html>

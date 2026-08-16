@@ -1,0 +1,408 @@
+/* ============================================================
+   Page privée d'administration
+   ============================================================ */
+
+.admin-panel {
+    margin-bottom: 20px;
+    padding: 24px;
+    background: var(--panel-background);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    box-shadow: var(--panel-shadow);
+    backdrop-filter: blur(14px);
+}
+
+.admin-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.account-kicker {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-light);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.admin-heading h2 {
+    margin: 0 0 7px;
+    font-size: 20px;
+}
+
+.admin-heading p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.secondary-button,
+.user-action {
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.secondary-button {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--panel-border-strong);
+}
+
+.secondary-button:hover,
+.user-action:hover {
+    filter: brightness(1.13);
+}
+
+.secondary-button:disabled,
+.user-action:disabled {
+    cursor: pointer;
+    opacity: 0.65;
+}
+
+.admin-filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.admin-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 58px;
+    padding: 12px 14px;
+    color: var(--text-secondary);
+    background: rgba(10, 13, 20, 0.52);
+    border: 1px solid var(--panel-border);
+    border-radius: 13px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.admin-filter:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--panel-border-strong);
+}
+
+.admin-filter.is-selected {
+    color: #ffffff;
+    background: rgba(139, 92, 246, 0.14);
+    border-color: var(--primary);
+    box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.18);
+}
+
+.admin-filter span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.admin-filter strong {
+    min-width: 28px;
+    padding: 4px 7px;
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.filter-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.filter-dot.is-online {
+    background: #22c55e;
+}
+
+.filter-dot.is-offline {
+    background: #ef4444;
+}
+
+.filter-dot.is-waiting {
+    background: #f59e0b;
+}
+
+.admin-users {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(410px, 1fr));
+    gap: 11px;
+    margin-top: 20px;
+}
+
+.admin-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 78px;
+    padding: 14px;
+    background: rgba(10, 13, 20, 0.52);
+    border: 1px solid var(--panel-border);
+    border-radius: 15px;
+    transition: background 160ms ease, border-color 160ms ease;
+}
+
+.admin-user:hover {
+    background: rgba(16, 20, 31, 0.78);
+    border-color: var(--panel-border-strong);
+}
+
+.admin-user-avatar-wrapper {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+}
+
+.admin-user-avatar {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--primary);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.admin-user-status-dot {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    width: 11px;
+    height: 11px;
+    border: 2px solid #11151f;
+    border-radius: 50%;
+}
+
+.admin-user-status-dot.is-online {
+    background: #22c55e;
+    box-shadow: 0 0 7px rgba(34, 197, 94, 0.7);
+}
+
+.admin-user-status-dot.is-offline {
+    background: #ef4444;
+    box-shadow: 0 0 7px rgba(239, 68, 68, 0.55);
+}
+
+.admin-user-status-dot.is-waiting {
+    background: #f59e0b;
+    box-shadow: 0 0 7px rgba(245, 158, 11, 0.6);
+    animation: admin-status-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes admin-status-pulse {
+    50% {
+        opacity: 0.55;
+        transform: scale(0.82);
+    }
+}
+
+.admin-user-identity {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+    gap: 7px;
+}
+
+.admin-user-identity strong {
+    overflow: hidden;
+    color: var(--text-primary);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-user-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.admin-user-badge {
+    padding: 3px 7px;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--panel-border);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 750;
+}
+
+.admin-user-badge.is-admin,
+.admin-user-badge.is-active {
+    color: #c4b5fd;
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(167, 139, 250, 0.28);
+}
+
+.admin-user-badge.is-online {
+    color: #86efac;
+    background: rgba(34, 197, 94, 0.09);
+    border-color: rgba(34, 197, 94, 0.25);
+}
+
+.admin-user-badge.is-waiting,
+.admin-user-badge.is-pending {
+    color: #fcd34d;
+    background: rgba(245, 158, 11, 0.09);
+    border-color: rgba(245, 158, 11, 0.25);
+}
+
+.admin-user-badge.is-offline,
+.admin-user-badge.is-blocked,
+.admin-user-badge.is-rejected {
+    color: #fca5a5;
+    background: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.24);
+}
+
+.admin-user-actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 7px;
+}
+
+.user-action-approve {
+    color: var(--success);
+    background: rgba(87, 242, 135, 0.08);
+    border: 1px solid rgba(87, 242, 135, 0.28);
+}
+
+.user-action-reject {
+    color: var(--danger);
+    background: rgba(255, 107, 122, 0.08);
+    border: 1px solid rgba(255, 107, 122, 0.28);
+}
+
+.admin-status {
+    min-height: 18px;
+    margin: 14px 0 0;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+.admin-empty-state {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 42px 20px;
+    color: var(--text-muted);
+    background: rgba(10, 13, 20, 0.35);
+    border: 1px dashed var(--panel-border-strong);
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Fenêtre de confirmation pour les actions sensibles. */
+.admin-confirm-dialog {
+    width: min(440px, calc(100vw - 40px));
+    padding: 0;
+    color: var(--text-primary);
+    background: #151925;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    border-radius: 18px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+.admin-confirm-dialog::backdrop {
+    background: rgba(3, 5, 10, 0.72);
+    backdrop-filter: blur(5px);
+}
+
+.admin-confirm-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    padding: 22px;
+}
+
+.confirm-icon {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    color: #fecaca;
+    background: rgba(239, 68, 68, 0.14);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    border-radius: 50%;
+    font-weight: 900;
+}
+
+.admin-confirm-content h2 {
+    margin: 2px 0 7px;
+    font-size: 17px;
+}
+
+.admin-confirm-content p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.admin-confirm-actions {
+    display: flex;
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.dialog-button {
+    padding: 9px 13px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.dialog-button-cancel {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--panel-border-strong);
+}
+
+.dialog-button-danger {
+    color: #ffffff;
+    background: #dc2626;
+    border: 1px solid #f87171;
+}
+
+.dialog-button:hover {
+    filter: brightness(1.12);
+}
+
+.admin-page-panel {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.admin-access-check {
+    flex: 1;
+    margin: 0;
+    padding: 30px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .admin-filters {
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+    }
+
+    .admin-users {
+        grid-template-columns: 1fr;
+    }
+}

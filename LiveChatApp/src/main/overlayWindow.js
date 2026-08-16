@@ -38,7 +38,7 @@ function createOverlayWindow() {
 
         // Isolation entre Electron et le JavaScript de la page.
         webPreferences: {
-            preload: path.join(__dirname, "overlayPreload.js"),
+            preload: path.join(__dirname, "../preload/overlayPreload.js"),
             contextIsolation: true,
             nodeIntegration: false
         }
@@ -47,7 +47,9 @@ function createOverlayWindow() {
     // Tous les clics traversent l'overlay et atteignent le jeu situé dessous.
     overlayWindow.setIgnoreMouseEvents(true, { forward: true });
     overlayWindow.setAlwaysOnTop(true, "screen-saver");
-    overlayWindow.loadFile("overlay.html");
+    overlayWindow.loadFile(
+        path.join(__dirname, "../renderer/pages/overlay.html")
+    );
 
     // showInactive affiche l'overlay sans voler le focus de l'utilisateur.
     overlayWindow.once("ready-to-show", () => {

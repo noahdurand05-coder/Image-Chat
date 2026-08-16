@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveChat — Paramètres</title>
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/components/toast.css">
+    <link rel="stylesheet" href="../styles/components/tutorial.css">
+    <link rel="stylesheet" href="../styles/pages/settings.css">
+</head>
+
+<body>
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="header-topbar">
+                <div class="brand">
+                    <span class="brand-logo" aria-hidden="true">LC</span>
+
+                    <div>
+                        <p class="brand-kicker">Overlay Discord</p>
+                        <h1>LiveChat</h1>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <div class="header-status-row">
+                        <div id="application-status" class="application-status is-waiting"
+                            role="status" aria-live="polite">
+                            <span id="application-status-label">Connexion en cours…</span>
+                        </div>
+
+                        <div class="account-compact" aria-label="Compte LiveChat">
+                            <div id="account-disconnected" class="account-disconnected" hidden>
+                                <span class="account-status-dot is-offline" aria-hidden="true"></span>
+                                <button id="discord-login" class="account-button" type="button">
+                                    Connexion Discord
+                                </button>
+                            </div>
+
+                            <div id="account-waiting" class="account-waiting" hidden>
+                                <span class="account-status-dot is-waiting" aria-hidden="true"></span>
+                                <span>En attente</span>
+                            </div>
+
+                            <div id="account-connected" class="account-profile" hidden>
+                                <div class="account-avatar-wrapper">
+                                    <img id="account-avatar" class="account-avatar" alt="">
+                                    <span class="account-status-dot is-online" aria-hidden="true"></span>
+                                </div>
+                                <div class="account-identity">
+                                    <strong id="account-username"></strong>
+                                    <span id="account-role" hidden></span>
+                                </div>
+                                <button id="logout" class="compact-logout" type="button"
+                                    title="Se déconnecter" aria-label="Se déconnecter">
+                                    <svg class="logout-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" />
+                                        <path d="M14 8l4 4-4 4" />
+                                        <path d="M18 12H9" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <p id="auth-status" class="account-feedback"
+                                aria-live="polite" hidden></p>
+                        </div>
+                    </div>
+
+                    <nav class="app-navigation" aria-label="Navigation principale">
+                        <a class="navigation-link is-active" href="index.html" aria-current="page">
+                            Paramètres
+                        </a>
+                        <a class="navigation-link" href="commandes.html">Commandes</a>
+                        <a id="admin-navigation" class="navigation-link"
+                            href="administration.html" hidden>
+                            Administration
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <p class="app-description">
+                Choisis l'emplacement et la taille de tes prochains messages.
+                Les modifications sont appliquées immédiatement à l'overlay.
+            </p>
+        </header>
+
+        <main class="settings-layout">
+            <section class="settings-card position-settings" aria-labelledby="position-title">
+                <div class="section-heading">
+                    <span class="section-number" aria-hidden="true">1</span>
+
+                    <div>
+                        <h2 id="position-title">Position</h2>
+                        <p>Emplacement du LiveChat sur l'écran principal.</p>
+                    </div>
+                </div>
+
+                <div class="position-grid" aria-label="Choix de la position">
+                    <button class="choice-button position-choice" type="button"
+                        data-setting="position" data-value="top-left">
+                        <span class="position-preview" aria-hidden="true">
+                            <span class="position-marker"></span>
+                        </span>
+                        <span>Haut gauche</span>
+                    </button>
+
+                    <button class="choice-button position-choice" type="button"
+                        data-setting="position" data-value="top-right">
+                        <span class="position-preview" aria-hidden="true">
+                            <span class="position-marker"></span>
+                        </span>
+                        <span>Haut droite</span>
+                    </button>
+
+                    <button class="choice-button position-choice" type="button"
+                        data-setting="position" data-value="center">
+                        <span class="position-preview" aria-hidden="true">
+                            <span class="position-marker"></span>
+                        </span>
+                        <span>Centre</span>
+                    </button>
+
+                    <button class="choice-button position-choice" type="button"
+                        data-setting="position" data-value="bottom-left">
+                        <span class="position-preview" aria-hidden="true">
+                            <span class="position-marker"></span>
+                        </span>
+                        <span>Bas gauche</span>
+                    </button>
+
+                    <button class="choice-button position-choice" type="button"
+                        data-setting="position" data-value="bottom-right">
+                        <span class="position-preview" aria-hidden="true">
+                            <span class="position-marker"></span>
+                        </span>
+                        <span>Bas droite</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="settings-card" aria-labelledby="size-title">
+                <div class="section-heading">
+                    <span class="section-number" aria-hidden="true">2</span>
+
+                    <div>
+                        <h2 id="size-title">Taille</h2>
+                        <p>Dimensions maximales du média et des textes.</p>
+                    </div>
+                </div>
+
+                <div class="size-grid" aria-label="Choix de la taille">
+                    <button class="choice-button size-choice" type="button"
+                        data-setting="size" data-value="small">
+                        <span class="size-preview size-preview-small" aria-hidden="true"></span>
+                        <span>Petit</span>
+                    </button>
+
+                    <button class="choice-button size-choice" type="button"
+                        data-setting="size" data-value="medium">
+                        <span class="size-preview size-preview-medium" aria-hidden="true"></span>
+                        <span>Moyen</span>
+                    </button>
+
+                    <button class="choice-button size-choice" type="button"
+                        data-setting="size" data-value="large">
+                        <span class="size-preview size-preview-large" aria-hidden="true"></span>
+                        <span>Grand</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="settings-card" aria-labelledby="volume-title">
+                <div class="section-heading">
+                    <span class="section-number" aria-hidden="true">3</span>
+
+                    <div>
+                        <h2 id="volume-title">Volume des vidéos</h2>
+                        <p>Le niveau choisi est appliqué immédiatement à l'overlay.</p>
+                    </div>
+                </div>
+
+                <div class="volume-control">
+                    <div class="volume-value-row">
+                        <label for="video-volume">Niveau sonore</label>
+                        <output id="volume-value" for="video-volume">100 %</output>
+                    </div>
+
+                    <input id="video-volume" class="volume-slider" type="range"
+                        min="0" max="100" step="5" value="100"
+                        aria-describedby="volume-help">
+
+                    <div id="volume-help" class="volume-scale">
+                        <span>Muet</span>
+                        <span>Maximum</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="preview-panel" aria-labelledby="preview-title">
+                <div class="preview-copy">
+                    <span class="preview-kicker">Aperçu local</span>
+                    <h2 id="preview-title">Vérifier le rendu de l'overlay</h2>
+                    <p>
+                        Affiche un exemple pendant 5 secondes, sans Discord
+                        et sans ajouter de message dans la base de données.
+                    </p>
+                </div>
+
+                <button id="test-overlay" class="preview-button" type="button">
+                    Tester l'overlay
+                </button>
+            </section>
+
+            <aside class="fixed-rules">
+                <strong>Durées automatiques</strong>
+                <span>Images : 15 secondes</span>
+                <span>Vidéos : durée réelle, 60 secondes maximum</span>
+            </aside>
+
+            <p id="status" class="status-message" role="status" aria-live="polite">
+                Chargement des paramètres…
+            </p>
+        </main>
+
+        <dialog id="tutorial-dialog" class="tutorial-dialog"
+            aria-labelledby="tutorial-title">
+            <div class="tutorial-shell">
+                <header class="tutorial-header">
+                    <div>
+                        <span id="tutorial-step-label" class="tutorial-step-label"></span>
+                        <h2 id="tutorial-title"></h2>
+                    </div>
+
+                    <button id="tutorial-close" class="tutorial-close" type="button"
+                        aria-label="Fermer le tutoriel" title="Fermer">
+                        ×
+                    </button>
+                </header>
+
+                <div class="tutorial-body">
+                    <div id="tutorial-illustration" class="tutorial-illustration"
+                        aria-hidden="true"></div>
+                    <p id="tutorial-description" class="tutorial-description"></p>
+                    <ul id="tutorial-points" class="tutorial-points"></ul>
+                </div>
+
+                <div id="tutorial-progress" class="tutorial-progress"
+                    aria-label="Progression du tutoriel"></div>
+
+                <footer class="tutorial-footer">
+                    <button id="tutorial-skip" class="tutorial-button tutorial-button-quiet"
+                        type="button">
+                        Passer le tutoriel
+                    </button>
+
+                    <div class="tutorial-navigation">
+                        <button id="tutorial-previous"
+                            class="tutorial-button tutorial-button-secondary" type="button">
+                            Précédent
+                        </button>
+                        <button id="tutorial-next"
+                            class="tutorial-button tutorial-button-primary" type="button">
+                            Suivant
+                        </button>
+                    </div>
+                </footer>
+            </div>
+        </dialog>
+
+        <footer class="app-footer">
+            <p>LiveChat — Créée par <strong>Suiki</strong></p>
+            <button id="open-tutorial" class="tutorial-open-button" type="button">
+                <span aria-hidden="true">?</span>
+                Guide de démarrage
+            </button>
+        </footer>
+    </div>
+
+    <script src="../scripts/components/connectionStatus.js"></script>
+    <script src="../scripts/components/toast.js"></script>
+    <script src="../scripts/components/tutorial.js"></script>
+    <script src="../scripts/accountRenderer.js"></script>
+    <script src="../scripts/settingsRenderer.js"></script>
+</body>
+</html>

@@ -12,7 +12,8 @@ const { app } = require("electron/main");
 
 const DEFAULT_SETTINGS = Object.freeze({
     position: "center",
-    size: "medium"
+    size: "medium",
+    volume: 100
 });
 
 const ALLOWED_POSITIONS = new Set([
@@ -30,13 +31,19 @@ const ALLOWED_SIZES = new Set(["small", "medium", "large"]);
 // ============================================================
 
 function validateSettings(settings = {}) {
+    const requestedVolume = Number(settings.volume);
+    const validatedVolume = Number.isFinite(requestedVolume)
+        ? Math.round(Math.min(100, Math.max(0, requestedVolume)))
+        : DEFAULT_SETTINGS.volume;
+
     return {
         position: ALLOWED_POSITIONS.has(settings.position)
             ? settings.position
             : DEFAULT_SETTINGS.position,
         size: ALLOWED_SIZES.has(settings.size)
             ? settings.size
-            : DEFAULT_SETTINGS.size
+            : DEFAULT_SETTINGS.size,
+        volume: validatedVolume
     };
 }
 

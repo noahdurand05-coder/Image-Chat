@@ -2,16 +2,19 @@
   "name": "livechatapp",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "src/main/main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:overlay-layout": "electron src/tests/overlayLayout.test.js"
   },
   "keywords": [],
   "author": "Suiki",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "electron": "^42.5.0"
+    "electron": "^42.9.1"
+  },
+  "dependencies": {
+    "ws": "^8.21.3"
   }
 }

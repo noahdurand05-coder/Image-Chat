@@ -2,28 +2,16 @@
   "name": "livechatbot",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/suiki/Image-Chat#readme",
-  "bugs": {
-    "url": "https://github.com/suiki/Image-Chat/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/suiki/Image-Chat.git"
-  },
   "license": "ISC",
-  "author": "",
+  "author": "Suiki",
   "type": "commonjs",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/main.js",
+    "test": "node src/tests/livechatApi.test.js"
   },
   "dependencies": {
-    "discord.js": "^14.26.4",
-    "dotenv": "^17.4.2",
-    "fs": "^0.0.1-security",
-    "mssql": "^12.5.5"
-  },
-  "devDependencies": {
-    "electron": "^42.5.0"
+    "discord.js": "^14.27.0",
+    "dotenv": "^17.4.2"
   }
 }
